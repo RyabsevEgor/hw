@@ -1,4 +1,0 @@
-vid = input()
-name = input()
-age = input()
-print('Это', vid, 'по кличке', '"' + name + '".','Возраст:', age + '.')
