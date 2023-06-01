@@ -7,10 +7,11 @@ from utils import randcell2
 2 - река
 3 - госпиталь
 4 - магазин
+5 - огонь
 🟩🚁🌲🌳🔥🌊🏆☁️🌩️⚡🏥🛒🧯🧡⬛ 🟦
 
 '''
-CELL_TYPES = '🟩🌲🟦🏥🛒'
+CELL_TYPES = '🟩🌲🟦🏥🛒🔥'
 
 class Map:
       
@@ -32,7 +33,11 @@ class Map:
                 rx, ry = rx2, ry2
                 l-=1
 
-
+    def generate_tree(self):
+        c = randcell(self.w, self.h)
+        cx, cy = c[0], c[1]
+        if (self.check_bounds(cx, cy) and self.cells[cx][cy] == 0):
+            self.cells[cx][cy] = 1
 
 
     def generate_forest(self, r, mxr):
@@ -56,11 +61,32 @@ class Map:
         if (x < 0 or y < 0 or x >= self.h or y >= self.w):
             return False
         return True
+   
+   
+    def add_fire(self):
+        c = randcell(self.w, self.h)
+        cx, cy = c[0], c[1]
+        if self.cells[cx][cy] == 1:
+            self.cells[cx][cy] = 5
+
+
+    def update_fires(self):
+        for ri in range(self.h):
+            for ci in range(self.w):
+                cell = self.cells[ri][ci]
+                if cell == 5:
+                    self.cells[ri][ci] = 0
+        for i in range(5):
+            self.add_fire()
+        
+
+
+
+
 tmp = Map(20, 10)
 
-tmp.generate_forest(3, 10)
+tmp.generate_forest(6, 10)
 tmp.generetae_river(30)
 tmp.generetae_river(10)
-if tmp.check_bounds(2,3):
-    print('yes')
+
 tmp.print_map()
