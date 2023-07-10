@@ -76,6 +76,19 @@ class LinkedList:
             del p.next
             p.next=temp
 
+# вставка элемента на позицию
+    def insert(self, position, data):
+        if position == 0:
+            z = self.head.value
+            self.add(data)
+            temp = Node()
+            temp.value = z
+            temp.next = self.head
+            self.head = temp
+
+
+
+			
 
 LL = LinkedList()
 LL.add(9)
@@ -90,6 +103,6 @@ print(LL.lenght())
 print(LL.find(9))
 print(LL.find(24))
 LL.print()
+LL.insert(0, 44)
 LL.delete(11)
 LL.print()
-a = 10
