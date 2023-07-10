@@ -57,6 +57,26 @@ class LinkedList:
             current_node = current_node.next
             print(current_node.value, end = ' ')
         print()
+
+#удаление элемента
+    def delete(self,data):
+
+        if self.head.value==data:
+            temp=self.head.next
+            del self.head
+            self.head=temp
+        else:
+            p=self.head
+            if p.value == data:
+                del p
+            else:
+                while p.next.value!=data:
+                    p=p.next
+            temp=p.next.next
+            del p.next
+            p.next=temp
+
+
 LL = LinkedList()
 LL.add(9)
 LL.add(8)
@@ -69,6 +89,7 @@ print(LL.lenght())
 
 print(LL.find(9))
 print(LL.find(24))
-
+LL.print()
+LL.delete(11)
 LL.print()
 a = 10
